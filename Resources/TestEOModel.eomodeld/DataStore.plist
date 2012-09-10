@@ -1,0 +1,28 @@
+{
+    attributes = (
+        {columnName = data; name = data; prototypeName = blob; }, 
+        {
+            allowsNull = Y; 
+            columnName = dataContainerID; 
+            name = dataContainerID; 
+            prototypeName = id; 
+        }, 
+        {allowsNull = N; name = id; prototypeName = id; }
+    ); 
+    attributesUsedForLocking = (data, dataContainerID, id); 
+    className = "com.test.entity.DataStore"; 
+    classProperties = (data, dataContainer); 
+    externalName = DataStore; 
+    fetchSpecificationDictionary = {}; 
+    name = DataStore; 
+    primaryKeyAttributes = (id); 
+    relationships = (
+        {
+            destination = DataContainer; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = dataContainerID; }); 
+            name = dataContainer; 
+        }
+    ); 
+}

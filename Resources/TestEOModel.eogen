@@ -1,0 +1,1 @@
+ -destination /Developer/MacsDesign/whd-git/MemoryLeakTest/Sources -extension java -java -javaTemplate _WonderEntity.java -model Resources/TestEOModel.eomodeld -packagedirs -subclassDestination /Developer/MacsDesign/whd-git/MemoryLeakTest/Sources -subclassJavaTemplate WonderEntity.java -templatedir ../../../Nutrislice/nutrisurvey/EOTemplates -verbose -loadModelGroup

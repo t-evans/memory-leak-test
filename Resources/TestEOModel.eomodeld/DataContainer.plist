@@ -1,0 +1,48 @@
+{
+    attributes = (
+        {allowsNull = N; name = id; prototypeName = id; }, 
+        {
+            allowsNull = Y; 
+            columnName = mainDataStoreId; 
+            name = mainDataStoreId; 
+            prototypeName = id; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = message; 
+            name = message; 
+            prototypeName = varcharLarge; 
+        }, 
+        {allowsNull = Y; columnName = name; name = name; prototypeName = varchar100; }
+    ); 
+    attributesUsedForLocking = (id, mainDataStoreId, message, name); 
+    className = "com.test.entity.DataContainer"; 
+    classProperties = (dataStore2s, dataStores, id, mainDataStore, message, name); 
+    externalName = DataContainer; 
+    fetchSpecificationDictionary = {}; 
+    name = DataContainer; 
+    primaryKeyAttributes = (id); 
+    relationships = (
+        {
+            destination = DataStore2; 
+            isToMany = Y; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = dataContainerID; sourceAttribute = id; }); 
+            name = dataStore2s; 
+        }, 
+        {
+            destination = DataStore; 
+            isToMany = Y; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = dataContainerID; sourceAttribute = id; }); 
+            name = dataStores; 
+        }, 
+        {
+            destination = DataStore; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = mainDataStoreId; }); 
+            name = mainDataStore; 
+        }
+    ); 
+}

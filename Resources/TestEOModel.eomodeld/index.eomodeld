@@ -1,0 +1,30 @@
+{
+    EOModelVersion = "2.1"; 
+    adaptorName = JDBC; 
+    connectionDictionary = {
+        URL = "jdbc:postgresql://127.0.0.1/memleaktest"; 
+        password = postgres; 
+        username = postgres; 
+    }; 
+    entities = (
+        {className = "com.test.entity.DataContainer"; name = DataContainer; }, 
+        {className = "com.test.entity.DataStore"; name = DataStore; }, 
+        {className = "com.test.entity.DataStore2"; name = DataStore2; }
+    ); 
+    userInfo = {
+        "_EntityModeler" = {
+            activeDatabaseConfigName = Default; 
+            databaseConfigs = {
+                Default = {
+                    adaptorName = JDBC; 
+                    connectionDictionary = {
+                        URL = "jdbc:postgresql://127.0.0.1/memleaktest"; 
+                        password = postgres; 
+                        username = postgres; 
+                    }; 
+                    prototypeEntityName = EOJDBCPostgresqlPrototypes; 
+                }; 
+            }; 
+        }; 
+    }; 
+}
