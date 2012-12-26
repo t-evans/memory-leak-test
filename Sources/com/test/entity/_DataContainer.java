@@ -15,15 +15,11 @@ import er.extensions.foundation.*;
 public abstract class _DataContainer extends  ERXGenericRecord {
   public static final String ENTITY_NAME = "DataContainer";
 
-  // Solr UserInfo
-
-
   // Attribute Keys
   public static final ERXKey<Integer> ID = new ERXKey<Integer>("id");
   public static final ERXKey<String> MESSAGE = new ERXKey<String>("message");
   public static final ERXKey<String> NAME = new ERXKey<String>("name");
   // Relationship Keys
-  public static final ERXKey<com.test.entity.DataStore2> DATA_STORE2S = new ERXKey<com.test.entity.DataStore2>("dataStore2s");
   public static final ERXKey<com.test.entity.DataStore> DATA_STORES = new ERXKey<com.test.entity.DataStore>("dataStores");
   public static final ERXKey<com.test.entity.DataStore> MAIN_DATA_STORE = new ERXKey<com.test.entity.DataStore>("mainDataStore");
 
@@ -32,7 +28,6 @@ public abstract class _DataContainer extends  ERXGenericRecord {
   public static final String MESSAGE_KEY = MESSAGE.key();
   public static final String NAME_KEY = NAME.key();
   // Relationships
-  public static final String DATA_STORE2S_KEY = DATA_STORE2S.key();
   public static final String DATA_STORES_KEY = DATA_STORES.key();
   public static final String MAIN_DATA_STORE_KEY = MAIN_DATA_STORE.key();
 
@@ -104,100 +99,6 @@ public abstract class _DataContainer extends  ERXGenericRecord {
     }
   }
   
-  public NSArray<com.test.entity.DataStore2> dataStore2s() {
-    return (NSArray<com.test.entity.DataStore2>)storedValueForKey(_DataContainer.DATA_STORE2S_KEY);
-  }
-
-  public NSArray<com.test.entity.DataStore2> dataStore2s(EOQualifier qualifier) {
-    return dataStore2s(qualifier, null, false);
-  }
-
-  public NSArray<com.test.entity.DataStore2> dataStore2s(EOQualifier qualifier, boolean fetch) {
-    return dataStore2s(qualifier, null, fetch);
-  }
-
-  public NSArray<com.test.entity.DataStore2> dataStore2s(EOQualifier qualifier, NSArray<EOSortOrdering> sortOrderings, boolean fetch) {
-    NSArray<com.test.entity.DataStore2> results;
-    if (fetch) {
-      EOQualifier fullQualifier;
-      EOQualifier inverseQualifier = new EOKeyValueQualifier(com.test.entity.DataStore2.DATA_CONTAINER_KEY, EOQualifier.QualifierOperatorEqual, this);
-    	
-      if (qualifier == null) {
-        fullQualifier = inverseQualifier;
-      }
-      else {
-        NSMutableArray<EOQualifier> qualifiers = new NSMutableArray<EOQualifier>();
-        qualifiers.addObject(qualifier);
-        qualifiers.addObject(inverseQualifier);
-        fullQualifier = new EOAndQualifier(qualifiers);
-      }
-
-      results = com.test.entity.DataStore2.fetchDataStore2s(editingContext(), fullQualifier, sortOrderings);
-    }
-    else {
-      results = dataStore2s();
-      if (qualifier != null) {
-        results = (NSArray<com.test.entity.DataStore2>)EOQualifier.filteredArrayWithQualifier(results, qualifier);
-      }
-      if (sortOrderings != null) {
-        results = (NSArray<com.test.entity.DataStore2>)EOSortOrdering.sortedArrayUsingKeyOrderArray(results, sortOrderings);
-      }
-    }
-    return results;
-  }
-  
-  public void addToDataStore2s(com.test.entity.DataStore2 object) {
-    includeObjectIntoPropertyWithKey(object, _DataContainer.DATA_STORE2S_KEY);
-  }
-
-  public void removeFromDataStore2s(com.test.entity.DataStore2 object) {
-    excludeObjectFromPropertyWithKey(object, _DataContainer.DATA_STORE2S_KEY);
-  }
-
-  public void addToDataStore2sRelationship(com.test.entity.DataStore2 object) {
-    if (_DataContainer.LOG.isDebugEnabled()) {
-      _DataContainer.LOG.debug("adding " + object + " to dataStore2s relationship");
-    }
-    if (er.extensions.eof.ERXGenericRecord.InverseRelationshipUpdater.updateInverseRelationships()) {
-    	addToDataStore2s(object);
-    }
-    else {
-    	addObjectToBothSidesOfRelationshipWithKey(object, _DataContainer.DATA_STORE2S_KEY);
-    }
-  }
-
-  public void removeFromDataStore2sRelationship(com.test.entity.DataStore2 object) {
-    if (_DataContainer.LOG.isDebugEnabled()) {
-      _DataContainer.LOG.debug("removing " + object + " from dataStore2s relationship");
-    }
-    if (er.extensions.eof.ERXGenericRecord.InverseRelationshipUpdater.updateInverseRelationships()) {
-    	removeFromDataStore2s(object);
-    }
-    else {
-    	removeObjectFromBothSidesOfRelationshipWithKey(object, _DataContainer.DATA_STORE2S_KEY);
-    }
-  }
-
-  public com.test.entity.DataStore2 createDataStore2sRelationship() {
-    EOClassDescription eoClassDesc = EOClassDescription.classDescriptionForEntityName( com.test.entity.DataStore2.ENTITY_NAME );
-    EOEnterpriseObject eo = eoClassDesc.createInstanceWithEditingContext(editingContext(), null);
-    editingContext().insertObject(eo);
-    addObjectToBothSidesOfRelationshipWithKey(eo, _DataContainer.DATA_STORE2S_KEY);
-    return (com.test.entity.DataStore2) eo;
-  }
-
-  public void deleteDataStore2sRelationship(com.test.entity.DataStore2 object) {
-    removeObjectFromBothSidesOfRelationshipWithKey(object, _DataContainer.DATA_STORE2S_KEY);
-    editingContext().deleteObject(object);
-  }
-
-  public void deleteAllDataStore2sRelationships() {
-    Enumeration<com.test.entity.DataStore2> objects = dataStore2s().immutableClone().objectEnumerator();
-    while (objects.hasMoreElements()) {
-      deleteDataStore2sRelationship(objects.nextElement());
-    }
-  }
-
   public NSArray<com.test.entity.DataStore> dataStores() {
     return (NSArray<com.test.entity.DataStore>)storedValueForKey(_DataContainer.DATA_STORES_KEY);
   }

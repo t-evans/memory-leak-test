@@ -15,9 +15,6 @@ import er.extensions.foundation.*;
 public abstract class _DataStore extends  ERXGenericRecord {
   public static final String ENTITY_NAME = "DataStore";
 
-  // Solr UserInfo
-
-
   // Attribute Keys
   public static final ERXKey<NSData> DATA = new ERXKey<NSData>("data");
   // Relationship Keys

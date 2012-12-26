@@ -8,8 +8,7 @@
     }; 
     entities = (
         {className = "com.test.entity.DataContainer"; name = DataContainer; }, 
-        {className = "com.test.entity.DataStore"; name = DataStore; }, 
-        {className = "com.test.entity.DataStore2"; name = DataStore2; }
+        {className = "com.test.entity.DataStore"; name = DataStore; }
     ); 
     userInfo = {
         "_EntityModeler" = {

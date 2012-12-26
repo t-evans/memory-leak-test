@@ -17,19 +17,12 @@
     ); 
     attributesUsedForLocking = (id, mainDataStoreId, message, name); 
     className = "com.test.entity.DataContainer"; 
-    classProperties = (dataStore2s, dataStores, id, mainDataStore, message, name); 
+    classProperties = (dataStores, id, mainDataStore, message, name); 
     externalName = DataContainer; 
     fetchSpecificationDictionary = {}; 
     name = DataContainer; 
     primaryKeyAttributes = (id); 
     relationships = (
-        {
-            destination = DataStore2; 
-            isToMany = Y; 
-            joinSemantic = EOInnerJoin; 
-            joins = ({destinationAttribute = dataContainerID; sourceAttribute = id; }); 
-            name = dataStore2s; 
-        }, 
         {
             destination = DataStore; 
             isToMany = Y; 
