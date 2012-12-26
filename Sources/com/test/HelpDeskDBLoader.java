@@ -131,7 +131,7 @@ public class HelpDeskDBLoader extends Object {
 //    	String prototypeEntityName = "EOJDBCFrontBasePrototypes";
 //    	String dbPlugin = "com.test.MDSFrontBaesLPlugIn";
 		
-    	String url = "dbc:postgresql://127.0.0.1/memleaktest";;
+    	String url = "jdbc:postgresql://127.0.0.1:5433/memleaktest";;
     	String username = "postgres";
     	String password = "postgres";
     	String subprotocol = "postgresql";

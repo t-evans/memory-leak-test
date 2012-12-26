@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="Sources"/>
-	<classpathentry kind="con" path="WOFramework/ERExtensions"/>
+	<classpathentry kind="lib" path="Libraries/0JavaFoundationOverrides.jar"/>
 	<classpathentry kind="con" path="WOFramework/ERJars"/>
+	<classpathentry kind="con" path="WOFramework/ERExtensions"/>
+	<classpathentry kind="src" path="Sources"/>
 	<classpathentry kind="con" path="WOFramework/ERPrototypes"/>
 	<classpathentry kind="con" path="WOFramework/JavaWOExtensions"/>
 	<classpathentry kind="con" path="WOFramework/WOOgnl"/>

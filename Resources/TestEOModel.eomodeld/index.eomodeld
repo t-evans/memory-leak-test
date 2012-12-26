@@ -2,7 +2,7 @@
     EOModelVersion = "2.1"; 
     adaptorName = JDBC; 
     connectionDictionary = {
-        URL = "jdbc:postgresql://127.0.0.1/memleaktest"; 
+        URL = "jdbc:postgresql://127.0.0.1:5433/memleaktest"; 
         password = postgres; 
         username = postgres; 
     }; 
@@ -18,7 +18,7 @@
                 Default = {
                     adaptorName = JDBC; 
                     connectionDictionary = {
-                        URL = "jdbc:postgresql://127.0.0.1/memleaktest"; 
+                        URL = "jdbc:postgresql://127.0.0.1:5433/memleaktest"; 
                         password = postgres; 
                         username = postgres; 
                     }; 

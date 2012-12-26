@@ -26,18 +26,31 @@ import er.extensions.eof.ERXEC;
 import er.extensions.eof.ERXObjectStoreCoordinator;
 
 public class Main extends ERXComponent {
+	private EOObjectStore _osc = new ERXObjectStoreCoordinator(true);
 	public Main(WOContext context) {
 		super(context);
+
+		EOEditingContext ec = ERXEC.newEditingContext(_osc);
+		ec.lock();
+		try {
+			DataContainer dc = (DataContainer) EOUtilities.objectMatchingKeyAndValue( ec, "DataContainer", "id", 1 );
+		}
+		finally {
+			ec.unlock();
+			ec.dispose();
+			ec = null;
+		}
 	}
 
 	public WOActionResults createDataStore() throws IOException, MessagingException {
-		File emailFile = new File("Resources/email.eml");
+		File emailFile = new File("Resources/largeEmail.eml");
 		javax.mail.Message message = convertEmlToMessage( emailFile );
 		
 		EOObjectStore osc = new ERXObjectStoreCoordinator(true);
 		EOEditingContext ec = ERXEC.newEditingContext(osc);
 		ec.lock();
 		try {
+	        DataContainer dc = (DataContainer) EOUtilities.objectMatchingKeyAndValue( ec, "DataContainer", "id", 1 );
 			DataContainer container = (DataContainer) EOUtilities.createAndInsertInstance(ec, DataContainer.class.getSimpleName());
 			ec.insertObject(container);
 			

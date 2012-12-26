@@ -49,6 +49,7 @@ import er.extensions.eof.ERXEC;
 import er.extensions.eof.ERXEntityClassDescription;
 import er.extensions.eof.ERXObjectStoreCoordinatorPool;
 import er.extensions.eof.ERXObjectStoreCoordinatorSynchronizer;
+import er.extensions.eof.ERXObjectStoreCoordinatorSynchronizer.SynchronizerSettings;
 
 public class MDSApplication extends ERXApplication {
 
@@ -222,9 +223,7 @@ public class MDSApplication extends ERXApplication {
        	
     	// nh 7/11/08 disable synchronizer for now, until we figure out how to do locking properly 
        	// (doesn't seem to really disable the synchronizer... oh well)
-       	/*
-       	ERXObjectStoreCoordinatorSynchronizer.synchronizer().setDefaultSettings( new SynchronizerSettings( false, false, false, false ) );	
-        */
+       	ERXObjectStoreCoordinatorSynchronizer.synchronizer().setDefaultSettings( new SynchronizerSettings( true, true, true, true ) );	
         ERXEC.setFactory( new MDSEditingContext.Factory( ERXObjectStoreCoordinatorPool._pool(), ERXEC._factory() ) );	// now override with our factory, which inherits the MultiOSCFactory
         if( ! isWindows ) {
             // nh 7/18/08: This causes an "Unknown signal: HUP" when running under Tomcat on Windows
