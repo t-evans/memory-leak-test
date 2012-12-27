@@ -18,6 +18,7 @@ import com.webobjects.appserver.WOContext;
 import com.webobjects.eoaccess.EOUtilities;
 import com.webobjects.eocontrol.EOEditingContext;
 import com.webobjects.eocontrol.EOObjectStore;
+import com.webobjects.foundation.NSArray;
 import com.webobjects.foundation.NSData;
 
 import er.extensions.components.ERXComponent;
@@ -35,7 +36,7 @@ public class Main extends ERXComponent {
 		EOEditingContext ec = ERXEC.newEditingContext(_osc);
 		ec.lock();
 		try {
-			DataContainer dc = (DataContainer) EOUtilities.objectMatchingKeyAndValue( ec, "DataContainer", "id", 1 );
+			NSArray dcArray = EOUtilities.objectsForEntityNamed( ec, "DataContainer" );
 		}
 		finally {
 			ec.unlock();
@@ -53,10 +54,8 @@ public class Main extends ERXComponent {
 		ec.lock();
 		try {
 			DataContainer container = (DataContainer) EOUtilities.createAndInsertInstance(ec, DataContainer.class.getSimpleName());
-			ec.insertObject(container);
 			
 			DataStore dataStore = (DataStore) EOUtilities.createAndInsertInstance(ec, DataStore.class.getSimpleName());
-			ec.insertObject(dataStore);
 			dataStore.setDataContainer(container);
 			
 			ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
