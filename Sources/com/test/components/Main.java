@@ -29,6 +29,9 @@ public class Main extends ERXComponent {
 	public Main(WOContext context) {
 		super(context);
 
+		// The memory leak doesn't happen unless there are multiple OSCs registered with 
+		// ERXObjectStoreCoordinatorSynchronizer._coordinators. Using an OSC (performing a lookup, etc,
+		// as below) causes the OSC to be added to the _coordinators array.
 		EOEditingContext ec = ERXEC.newEditingContext(_osc);
 		ec.lock();
 		try {
@@ -49,7 +52,6 @@ public class Main extends ERXComponent {
 		EOEditingContext ec = ERXEC.newEditingContext(osc);
 		ec.lock();
 		try {
-	        DataContainer dc = (DataContainer) EOUtilities.objectMatchingKeyAndValue( ec, "DataContainer", "id", 1 );
 			DataContainer container = (DataContainer) EOUtilities.createAndInsertInstance(ec, DataContainer.class.getSimpleName());
 			ec.insertObject(container);
 			
@@ -62,7 +64,6 @@ public class Main extends ERXComponent {
 			NSData rawEmail = new NSData( byteStream.toByteArray() );
 			dataStore.setData(rawEmail);
 			
-	
 			ec.saveChanges();
 		}
 		finally {
@@ -75,22 +76,22 @@ public class Main extends ERXComponent {
 		return null;
 	}
 
-	private static Session _dummySession;
-	private static Session dummySession() {
-		if ( _dummySession == null ) {
+	private static Session _dummyMailSession;
+	private static Session dummyMailSession() {
+		if ( _dummyMailSession == null ) {
 			Properties props = new Properties();
 			props.put("mail.host", "smtp.dummyDomain.com");
 			props.put("mail.transport.protocol", "smtp");
-			_dummySession = Session.getDefaultInstance(props, null);
+			_dummyMailSession = Session.getDefaultInstance(props, null);
 		}
-		return _dummySession;
+		return _dummyMailSession;
 	}
 
 	private Message convertEmlToMessage(File emailFile) {
 		FileInputStream fileInputStream;
 		try {
 			fileInputStream = new FileInputStream( emailFile );
-			return new MimeMessage( dummySession(), fileInputStream );
+			return new MimeMessage( dummyMailSession(), fileInputStream );
 		}
 		catch (Exception e) {
 			throw new RuntimeException(e);

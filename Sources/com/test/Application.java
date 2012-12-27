@@ -1,13 +1,6 @@
 package com.test;
 
-import com.webobjects.appserver.WOApplication;
-import com.webobjects.foundation.NSNotification;
-import com.webobjects.foundation.NSNotificationCenter;
-import com.webobjects.foundation.NSSelector;
-
 import er.extensions.appserver.ERXApplication;
-import er.extensions.eof.ERXEntityClassDescription;
-import er.extensions.eof.ERXObjectStoreCoordinatorPool;
 import er.extensions.eof.ERXObjectStoreCoordinatorSynchronizer;
 import er.extensions.eof.ERXObjectStoreCoordinatorSynchronizer.SynchronizerSettings;
 
@@ -18,19 +11,10 @@ public class Application extends ERXApplication {
 
 	public Application() {
 		ERXApplication.log.info("Welcome to " + name() + " !");
-		
-        NSNotificationCenter.defaultCenter().addObserver( this, new NSSelector<Object>( "applicationDidFinishLaunching", new Class[] { NSNotification.class } ), WOApplication.ApplicationDidFinishLaunchingNotification, null );
+
+       	// Turning the synchronizer on seems to trigger the memory leak.
+       	ERXObjectStoreCoordinatorSynchronizer.synchronizer().setDefaultSettings( new SynchronizerSettings( true, true, true, true ) );
         
 		setAllowsConcurrentRequestHandling(true);	
-	}
-
-	public void applicationDidFinishLaunching( NSNotification notification ) {
-		
-       	ERXObjectStoreCoordinatorSynchronizer.initialize();
-       	ERXObjectStoreCoordinatorPool.initialize();
-
-       	ERXEntityClassDescription.registerDescription();
-       	
-       	ERXObjectStoreCoordinatorSynchronizer.synchronizer().setDefaultSettings( new SynchronizerSettings( true, true, true, true ) );
 	}
 }
